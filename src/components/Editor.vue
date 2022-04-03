@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col>
+            <v-col class="col-3">
                 <v-btn
                         class="mx-2"
                         dark
@@ -9,6 +9,16 @@
                         color="primary"
                         @click="generateLoremIpsun"
                 >Generate LoremIpsum
+                </v-btn>
+            </v-col>
+            <v-col class="col-2">
+                <v-btn
+                        class="mx-2"
+                        dark
+                        small
+                        color="warning"
+                        @click="clearEditor"
+                >Clear
                 </v-btn>
             </v-col>
         </v-row>
@@ -181,6 +191,10 @@
             generateLoremIpsun(){
                 this.contentEditor = LoremIpsum.generateText();
                 this.onChangeEditor();
+            },
+            clearEditor(){
+                 this.contentEditor = '';
+                 this.onChangeEditor();
             }
         },
         computed: {
