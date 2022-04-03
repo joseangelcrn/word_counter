@@ -1,4 +1,4 @@
-# word_counter
+# Word Counter
 
 Application to counter every word you write on textarea.
 
