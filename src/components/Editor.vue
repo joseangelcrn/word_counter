@@ -142,6 +142,7 @@
                     word = word.trim();
                     word = word.replace('.','');
                     word = word.replace(',','');
+                    word = word.toLowerCase();
 
                     if (word.length > 0){
                         let exists = this.items.filter((data)=>{
