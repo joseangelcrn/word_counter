@@ -8,7 +8,7 @@
                         small
                         color="primary"
                         @click="generateLoremIpsun"
-                >Generar LoremIpsum
+                >Generate LoremIpsum
                 </v-btn>
             </v-col>
         </v-row>
@@ -35,7 +35,7 @@
                         <v-list-item  v-show="items.length > 0">
                             <v-list-item-content >
                                 <v-list-item-title>
-                                    <span class="word" >{{items.length}} palabras </span>
+                                    <span class="word" >{{items.length}} words </span>
                                     <span class="float-end">
                                          <v-btn
                                                  class="mx-2"
