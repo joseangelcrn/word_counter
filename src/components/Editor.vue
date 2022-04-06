@@ -209,6 +209,10 @@
         },
         beforeMount() {
             this.stringNormalizer = new StringNormalizer();
+        },
+        mounted() {
+            console.log('test')
+            console.log(process.env)
         }
     }
 </script>

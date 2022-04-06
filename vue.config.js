@@ -2,7 +2,7 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
-  publicPath: process.env.NODE_ENV === 'production'
+  publicPath: process.env.VUE_APP_NODE_ENV === 'production'
       ? '/word_counter/'
       : '/'
 }
