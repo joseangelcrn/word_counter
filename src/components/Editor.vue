@@ -8,7 +8,7 @@
                         small
                         color="primary"
                         @click="generateLoremIpsun"
-                >Generate LoremIpsum
+                >Generate LoremIpsum.js
                 </v-btn>
             </v-col>
             <v-col class="col-2">
@@ -122,7 +122,8 @@
     }
 </style>
 <script>
-    import LoremIpsum from "../LoremIpsun/LoremIpsum";
+    import LoremIpsum from "../Utils/LoremIpsum";
+    import StringNormalizer from "../Utils/StringNormalizer";
 
     export default {
         name: 'Editor',
@@ -130,6 +131,7 @@
         data: () => ({
             contentEditor:'',
             loading:false,
+            stringNormalizer:null,
 
             items: [
                 // {
@@ -149,10 +151,7 @@
                 splittedText.forEach((word)=>{
 
                     //prepare word
-                    word = word.trim();
-                    word = word.replace('.','');
-                    word = word.replace(',','');
-                    word = word.toLowerCase();
+                    word = this.stringNormalizer.normalize(word);
 
                     if (word.length > 0){
                         let exists = this.items.filter((data)=>{
@@ -192,6 +191,7 @@
                 this.contentEditor = LoremIpsum.generateText();
                 this.onChangeEditor();
             },
+            //Clear Editor
             clearEditor(){
                  this.contentEditor = '';
                  this.onChangeEditor();
@@ -206,6 +206,9 @@
                 });
                 return total;
             }
+        },
+        beforeMount() {
+            this.stringNormalizer = new StringNormalizer();
         }
     }
 </script>
