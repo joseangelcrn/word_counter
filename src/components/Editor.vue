@@ -8,7 +8,7 @@
                         small
                         color="primary"
                         @click="generateLoremIpsun"
-                >Generate LoremIpsum.js
+                >Generate LoremIpsum
                 </v-btn>
             </v-col>
             <v-col class="col-2">
