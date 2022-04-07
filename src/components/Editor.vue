@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col class="col-3">
+            <v-col xs="6" sm="3" md="3">
                 <v-btn
                         class="mx-2"
                         dark
@@ -11,9 +11,9 @@
                 >Generate LoremIpsum
                 </v-btn>
             </v-col>
-            <v-col class="col-2">
+            <v-col xs="6" sm="3" md="3">
                 <v-btn
-                        class="mx-2"
+                        class=" "
                         dark
                         small
                         color="warning"
@@ -22,11 +22,11 @@
                 </v-btn>
             </v-col>
         </v-row>
+
         <v-row>
-            <v-col cols="9">
+            <v-col v-show="toggleShowEditor"  :cols="!isMobile() ? 8 : 12">
                 <v-textarea
                         solo
-                        name="input-7-4"
                         label="Word Counter"
                         counter="true"
                         messages="Word Counter"
@@ -35,10 +35,9 @@
                         id="editor"
                 ></v-textarea>
             </v-col>
-            <v-col cols="3">
+            <v-col :cols="!isMobile() ? 4 : 12" v-show="!isMobile() || isMobile() && !toggleShowEditor">
                 <template>
                     <v-card
-                            class="mx-auto"
                             max-width="400"
                             tile
                     >
@@ -86,6 +85,13 @@
             </v-col>
 
         </v-row>
+        <template v-if="isMobile()">
+            <vue-fab mainBtnColor="#3599DB"   fabItemAnimate="default"  id="mobile_float_menu">
+                <fab-item @clickItem="onClickMobileMenu" :idx="0"  icon="asdasd" />
+            </vue-fab>
+        </template>
+
+
     </v-container>
 </template>
 <style>
@@ -120,6 +126,18 @@
             transform: scale(1);
         }
     }
+
+
+    /*MOBILE VERSION*/
+    @media (max-width: 600px) {
+        #editor{
+            min-height: 750px;
+            font-size: 30px;
+        }
+        #mobile_float_menu{
+            display: block !important;
+        }
+    }
 </style>
 <script>
     import LoremIpsum from "../Utils/LoremIpsum";
@@ -132,6 +150,8 @@
             contentEditor:'',
             loading:false,
             stringNormalizer:null,
+            showWordCounter:false,
+            toggleShowEditor:true,
 
             items: [
                 // {
@@ -195,7 +215,21 @@
             clearEditor(){
                  this.contentEditor = '';
                  this.onChangeEditor();
-            }
+            },
+
+            //MOBILE MENU
+            onClickMobileMenu(){
+                console.log('click mobile menu !')
+                this.toggleShowEditor = !this.toggleShowEditor;
+            },
+            isMobile() {
+                let widthPixels = window.screen.width * window.devicePixelRatio;
+                if (widthPixels <= 760) {
+                    return true
+                } else {
+                    return false
+                }
+            },
         },
         computed: {
             totalWords() {
@@ -205,14 +239,13 @@
                    total += item.count;
                 });
                 return total;
-            }
+            },
+
         },
         beforeMount() {
             this.stringNormalizer = new StringNormalizer();
-        },
-        mounted() {
-            console.log('test')
-            console.log(process.env)
+            this.showWordCounter = !this.isMobile();
+
         }
     }
 </script>
