@@ -86,8 +86,9 @@
 
         </v-row>
         <template v-if="isMobile()">
-            <vue-fab mainBtnColor="#3599DB"   fabItemAnimate="default"  id="mobile_float_menu">
-                <fab-item @clickItem="onClickMobileMenu" :idx="0"  icon="asdasd" />
+            <vue-fab mainBtnColor="#3599DB"   fabItemAnimate="default"  id="mobile_float_menu" icon="*" active-icon="*">
+                <fab-item v-if="!toggleShowEditor" @clickItem="onClickMobileMenu" :idx="0"  icon="Show Text Editor" />
+                <fab-item v-else @clickItem="onClickMobileMenu" :idx="0"  icon="Hide Text Editor" />
             </vue-fab>
         </template>
 
