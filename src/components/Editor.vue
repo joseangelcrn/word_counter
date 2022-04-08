@@ -38,7 +38,7 @@
             <v-col :cols="!isMobile() ? 4 : 12" v-show="!isMobile() || isMobile() && !toggleShowEditor">
                 <template>
                     <v-card
-                            max-width="400"
+
                             tile
                     >
                         <v-list-item  v-show="items.length > 0">
@@ -224,8 +224,9 @@
                 this.toggleShowEditor = !this.toggleShowEditor;
             },
             isMobile() {
-                let widthPixels = window.screen.width * window.devicePixelRatio;
-                if (widthPixels <= 760) {
+                // let widthPixels = window.screen.width * window.devicePixelRatio;
+                let widthPixels = window.screen.width;
+                if (widthPixels <= 600) {
                     return true
                 } else {
                     return false
