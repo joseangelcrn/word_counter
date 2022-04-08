@@ -216,6 +216,10 @@
             clearEditor(){
                  this.contentEditor = '';
                  this.onChangeEditor();
+
+                 if (this.isMobile()){
+                    this.toggleShowEditor = true;
+                 }
             },
 
             //MOBILE MENU
@@ -228,9 +232,10 @@
                 let widthPixels = window.screen.width;
                 if (widthPixels <= 600) {
                     return true
-                } else {
-                    return false
                 }
+
+                return false
+
             },
         },
         computed: {
